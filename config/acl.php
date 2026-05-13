@@ -10,6 +10,9 @@ return [
         'subscription.status.chanage' => ['super admin'],
         'subscription.update' => ['super admin'],
         'subscription.report' => ['super admin', 'admin'],
+        'subscription.pending.approvals' => ['super admin'],
+        'subscription.approve' => ['super admin'],
+        'subscription.reject' => ['super admin'],
         //Payment Gateway
         'payment-gateway.index'  => ['super admin'],
         'payment-gateway.update' => ['super admin'],
@@ -178,11 +181,11 @@ return [
         'sale.return.details' => ['admin'],
         'sale.return.product.store' => ['admin'],
         //Role route
-        'role.index' => ['super admin', 'admin'],
-        'role.store' => ['super admin', 'admin'],
-        'role.update' => ['super admin', 'admin'],
-        'role.permission' => ['super admin', 'admin'],
-        'role.set.permission' => ['super admin', 'admin'],
+        'role.index' => ['super admin'],
+        'role.store' => ['super admin'],
+        'role.update' => ['super admin'],
+        'role.permission' => ['super admin'],
+        'role.set.permission' => ['super admin'],
         //Warehouse route
         'warehouse.index' => ['admin'],
         'warehouse.store' => ['admin'],
@@ -289,5 +292,25 @@ return [
         'payroll.store' => ['admin'],
         'payroll.update' => ['admin'],
         'payroll.delete' => ['admin'],
+        // Role Management (SuperAdmin Only)
+        'role.index' => ['super admin'],
+        'role.create' => ['super admin'],
+        'role.store' => ['super admin'],
+        'role.edit' => ['super admin'],
+        'role.update' => ['super admin'],
+        'role.destroy' => ['super admin'],
+        'role.permissions' => ['super admin'],
+        'role.permissions.update' => ['super admin'],
+        // Permission Management (SuperAdmin Only)
+        'permission.index' => ['super admin'],
+        'permission.create' => ['super admin'],
+        'permission.store' => ['super admin'],
+        'permission.edit' => ['super admin'],
+        'permission.update' => ['super admin'],
+        'permission.destroy' => ['super admin'],
+        // User Management (SuperAdmin Only)
+        'user.manage' => ['super admin'],
+        'user.assign.role' => ['super admin'],
+        'user.remove.role' => ['super admin'],
     ],
 ];

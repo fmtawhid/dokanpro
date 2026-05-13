@@ -18,7 +18,9 @@
                                     <th>{{ __('is_current') }}</th>
                                     <th>{{ __('payment_gateway') }}</th>
                                     <th>{{ __('payment_status') }}</th>
+                                    <th>{{ __('status') }}</th>
                                     <th>{{ __('expired_at') }}</th>
+                                    <th class="not-exported">{{ __('actions') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -29,8 +31,35 @@
                                         <td>{{ $shopSubscription->subscription->title }}</td>
                                         <td>{{ $shopSubscription->is_current }}</td>
                                         <td>{{ $shopSubscription->payment_gateway }}</td>
-                                        <td>{{ $shopSubscription->payment_status }}</td>
+                                        <td>
+                                            <span class="badge @if($shopSubscription->payment_status->value == 'Paid') badge-success @else badge-warning @endif">
+                                                {{ $shopSubscription->payment_status->value }}
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="badge @if($shopSubscription->status->value == 'Approved') badge-success @elseif($shopSubscription->status->value == 'Pending') badge-warning @else badge-danger @endif">
+                                                {{ $shopSubscription->status->value }}
+                                            </span>
+                                        </td>
                                         <td>{{ dateFormat($shopSubscription->expired_at) }}</td>
+                                        <td>
+                                            @if($shopSubscription->status->value == 'Pending' && auth()->user()->id == 1)
+                                                <form method="POST" style="display: inline;">
+                                                    @csrf
+                                                    <button type="submit" formaction="{{ route('subscription.approve', $shopSubscription) }}" class="btn btn-sm btn-success" title="{{ __('approve') }}">
+                                                        <i class="fas fa-check"></i> {{ __('approve') }}
+                                                    </button>
+                                                </form>
+                                                <form method="POST" style="display: inline;">
+                                                    @csrf
+                                                    <button type="submit" formaction="{{ route('subscription.reject', $shopSubscription) }}" class="btn btn-sm btn-danger" title="{{ __('reject') }}" onclick="return confirm('{{ __('are_you_sure') }}')">
+                                                        <i class="fas fa-times"></i> {{ __('reject') }}
+                                                    </button>
+                                                </form>
+                                            @else
+                                                <span class="text-muted">-</span>
+                                            @endif
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>

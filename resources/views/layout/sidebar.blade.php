@@ -464,7 +464,34 @@
                             </div>
                         </div>
                     </li>
-                    @endif
+                @endcanany
+
+                <!-- SUPER ADMIN: Role & Permission Management -->
+                @role('super admin')
+                    <li>
+                        <a class="menu {{ $request->routeIs('superadmin.roles.*', 'superadmin.permissions.*', 'superadmin.users*') ? 'active' : '' }}" data-bs-toggle="collapse" href="#adminToolsMenu">
+                            <span>
+                                <img src="{{ asset('icons/Setting.svg') }}" class="menu-icon" alt="icon" />
+                                {{ __('Admin Tools') }}
+                            </span>
+                            <img src="{{ asset('icons/arrowDown.svg') }}" alt="" class="downIcon">
+                        </a>
+                        <div class="collapse dropdownMenuCollapse {{ $request->routeIs('superadmin.roles.*', 'superadmin.permissions.*', 'superadmin.users*') ? 'show' : '' }}" id="adminToolsMenu">
+                            <div class="listBar">
+                                <a href="{{ route('superadmin.roles.index') }}" class="subMenu {{ $request->routeIs('superadmin.roles.*') ? 'active' : '' }}">
+                                    {{ __('Roles') }}
+                                </a>
+                                <a href="{{ route('superadmin.permissions') }}" class="subMenu {{ $request->routeIs('superadmin.permissions*') ? 'active' : '' }}">
+                                    {{ __('Permissions') }}
+                                </a>
+                                <a href="{{ route('superadmin.users') }}" class="subMenu {{ $request->routeIs('superadmin.users*') ? 'active' : '' }}">
+                                    {{ __('User Management') }}
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                @endrole
+
                     @canany(['store.index'])
                         <li>
                             <a class="menu {{ $request->routeIs('store.*') ? 'active' : '' }}" data-bs-toggle="collapse"

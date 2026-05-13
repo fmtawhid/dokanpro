@@ -79,7 +79,7 @@ class PaymentGatewayController extends Controller
                 'selected_features' => $selectedFeatures,
             ]);
 
-            // Handle manual payment - skip payment service, process directly
+            // Handle manual payment - create pending subscription for admin approval
             if ($request->payment_method === 'manual') {
                 $shopSubscription = ShopSubscriptionRepository::query()->where([
                     'is_current' => IsHas::YES->value,
@@ -91,8 +91,15 @@ class PaymentGatewayController extends Controller
                         'is_current' => IsHas::NO->value,
                     ]);
                 }
-                SubscriptionRequestRepository::updateByRequest($subscriptionRequest, $request->payment_method);
-                $createdSubscription = ShopSubscriptionRepository::storeByRequest($subscriptionRequest, 'manual');
+                
+                // Update subscription request with manual gateway and pending status
+                $subscriptionRequest->update([
+                    'payment_gateway' => 'manual',
+                    'payment_status' => 'Unpaid',
+                    'status' => 'Pending',
+                ]);
+                
+                $createdSubscription = ShopSubscriptionRepository::storePendingByRequest($subscriptionRequest, 'manual');
                 
                 // Attach selected features to the shop subscription
                 if (!empty($selectedFeatures)) {
@@ -113,7 +120,7 @@ class PaymentGatewayController extends Controller
                     }
                 }
 
-                return redirect()->route('root')->with('success', 'Subscription activated via manual payment. Please complete the payment.');
+                return redirect()->route('root')->with('success', 'Subscription request submitted. Waiting for admin approval.');
             }
 
             // Handle other payment gateways

@@ -47,6 +47,13 @@ use App\Http\Controllers\SuperAdmin\PaymentGatewayController;
 use App\Http\Controllers\SuperAdmin\DashBoardController as SuperAdminDashBoardController;
 
 
+use App\Http\Controllers\SuperAdmin\UserRoleController;
+use App\Http\Controllers\SuperAdmin\PermissionController;
+use App\Http\Controllers\SuperAdmin\RoleController as SuperAdminRoleController;
+
+
+
+
 Route::controller(PosController::class)->group(function () {
     Route::any('payment-success', 'successPayment')->name('payment.success');
     Route::any('payment/cancel', 'cancelPayment')->name('payment.cancel');
@@ -85,6 +92,9 @@ Route::middleware(['auth', 'check_permission'])->group(function () {
     Route::controller(SubscriptionController::class)->group(function () {
         Route::get('subscriptions', 'index')->name('subscription.index');
         Route::get('subscription/report', 'report')->name('subscription.report');
+        Route::get('subscription/pending-approvals', 'pendingApprovals')->name('subscription.pending.approvals');
+        Route::post('subscription/{shopSubscription}/approve', 'approve')->name('subscription.approve');
+        Route::post('subscription/{shopSubscription}/reject', 'reject')->name('subscription.reject');
         Route::get('subscription/status-chanage/{subscription}/{status}', 'statusChanage')->name('subscription.status.chanage');
         Route::post('subscription/store', 'store')->name('subscription.store');
         Route::put('subscription/update/{subscription}', 'update')->name('subscription.update');
@@ -439,6 +449,13 @@ Route::middleware(['auth', 'check_permission'])->group(function () {
         Route::put('payroll/update/{payroll}', 'update')->name('payroll.update');
         Route::get('payroll/delete/{payroll}', 'delete')->name('payroll.delete');
     });
+
+
+
+
+
+
+
 });
 Route::controller(ManualInstallController::class)->group(function () {
     Route::get('/seeder-run', 'seederRun')->name('seeder.run.index');
@@ -454,3 +471,33 @@ Route::get('/change-language', function () {
 })->name('change.local');
 
 
+
+    // SuperAdmin Role Management
+    Route::controller(SuperAdminRoleController::class)->middleware('auth')->group(function () {
+        Route::get('super-admin/roles', 'index')->name('superadmin.roles.index');
+        Route::get('super-admin/roles/create', 'create')->name('superadmin.roles.create');
+        Route::post('super-admin/roles', 'store')->name('superadmin.roles.store');
+        Route::get('super-admin/roles/{role}/edit', 'edit')->name('superadmin.roles.edit');
+        Route::put('super-admin/roles/{role}', 'update')->name('superadmin.roles.update');
+        Route::delete('super-admin/roles/{role}', 'destroy')->name('superadmin.roles.destroy');
+        Route::get('super-admin/roles/{role}/permissions', 'permissions')->name('superadmin.role.permissions');
+        Route::post('super-admin/roles/{role}/permissions', 'updatePermissions')->name('superadmin.role.permissions.update');
+    });;
+
+    // SuperAdmin User Management
+    Route::controller(UserRoleController::class)->middleware('auth')->group(function () {
+        Route::get('super-admin/users', 'index')->name('superadmin.users');
+        Route::get('super-admin/users/{user}', 'show')->name('superadmin.users.show');
+        Route::post('super-admin/user-role/{user}', 'assignRole')->name('superadmin.user.role');
+        Route::delete('super-admin/users/{user}/role/{role}', 'removeRole')->name('superadmin.user.role.remove');
+    });
+
+    // SuperAdmin Permission Management
+    Route::controller(PermissionController::class)->middleware('auth')->group(function () {
+        Route::get('super-admin/permissions', 'index')->name('superadmin.permissions');
+        Route::get('super-admin/permissions/create', 'create')->name('superadmin.permissions.create');
+        Route::post('super-admin/permissions/store', 'store')->name('superadmin.permissions.store');
+        Route::get('super-admin/permissions/{permission}/edit', 'edit')->name('superadmin.permissions.edit');
+        Route::put('super-admin/permissions/{permission}', 'update')->name('superadmin.permissions.update');
+        Route::delete('super-admin/permissions/{permission}', 'destroy')->name('superadmin.permissions.delete');
+    });

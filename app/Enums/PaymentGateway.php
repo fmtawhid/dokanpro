@@ -12,5 +12,6 @@ enum PaymentGateway: string
     case PAYFAST = 'payfast';
     case ORANGEPAY = 'orangepay';
     case MANUAL = 'manual';
+    case TRIAL = 'trial';
 
 }

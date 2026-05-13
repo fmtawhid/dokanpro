@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Enums\IsHas;
 use App\Enums\PaymentGateway;
 use App\Enums\PaymentStatus;
+use App\Enums\SubscriptionApprovalStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -19,6 +20,7 @@ class ShopSubscription extends Model
         'payment_gateway' => PaymentGateway::class,
         'payment_status' => PaymentStatus::class,
         'is_current' => IsHas::class,
+        'status' => SubscriptionApprovalStatus::class,
     ];
 
     public function subscription()

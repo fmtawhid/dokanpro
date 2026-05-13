@@ -45,4 +45,33 @@ class SubscriptionRequestRepository extends Repository
             'status' => SubscriptionRequestStatus::FAILED->value,
         ]);
     }
+
+    public static function storeManualRequest(Subscription $subscription, $selectedFeatures = null)
+    {
+        return self::create([
+            'user_id' => auth()->id(),
+            'subscription_id' => $subscription->id,
+            'payment_status' => PaymentStatus::UNPAID->value,
+            'status' => SubscriptionRequestStatus::PENDING->value,
+            'payment_gateway' => PaymentGateway::MANUAL->value,
+            'selected_features' => $selectedFeatures ?? [],
+        ]);
+    }
+
+    public static function approveRequest(SubscriptionRequest $subscriptionRequest)
+    {
+        $transactionId = Keygen::numeric(16)->generate();
+        return self::update($subscriptionRequest, [
+            'payment_status' => PaymentStatus::PAID->value,
+            'status' => SubscriptionRequestStatus::SUCCESS->value,
+            'transaction_id' => $transactionId
+        ]);
+    }
+
+    public static function rejectRequest(SubscriptionRequest $subscriptionRequest)
+    {
+        return self::update($subscriptionRequest, [
+            'status' => SubscriptionRequestStatus::FAILED->value,
+        ]);
+    }
 }
