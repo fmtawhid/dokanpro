@@ -1,0 +1,260 @@
+[
+    {
+        "name": "Electronic",
+        "products": [
+            {
+                "name": "Camera Photography",
+                "price":"200",
+                "cost":"150"
+            },
+            {
+                "name": "IP Camera",
+                "price":"300",
+                "cost":"250"
+            },
+            {
+                "name": "DSLR Camera",
+                "price":"350",
+                "cost":"300"
+            },
+            {
+                "name": "Digital Controller",
+                "price":"150",
+                "cost":"100"
+            },
+            {
+                "name": "Headphone",
+                "price":"100",
+                "cost":"70"
+            },
+            {
+                "name": "Tablat",
+                "price":"300",
+                "cost":"250"
+            }
+        ]
+    },
+    {
+        "name": "Accessories",
+        "products": [
+            {
+                "name": "Vanity bag Women",
+                "price":"100",
+                "cost":"55"
+            },
+            {
+                "name": "Fashion Unique Design Fashion Vanity Bag For Women",
+                "price":"130",
+                "cost":"100"
+            },
+            {
+                "name": "Accessories",
+                "price":"170",
+                "cost":"150"
+            },
+            {
+                "name": "Transparent Frame Sunglasses for Men - Black",
+                "price":"80",
+                "cost":"50"
+            }
+        ]
+    },
+    {
+        "name": "Automobile",
+        "products": [
+            {
+                "name": "Bearing",
+                "price":"100",
+                "cost":"70"
+            },
+            {
+                "name": "Mobil motor oil products | Mobil",
+                "price":"130",
+                "cost":"100"
+            },
+            {
+                "name": "Automobile",
+                "price":"200",
+                "cost":"150"
+            }
+        ]
+    },
+    {
+        "name": "Computer",
+        "products": [
+            {
+                "name": "New Full Desktop Computer",
+                "price":"300",
+                "cost":"250"
+            },
+            {
+                "name": "Laptop",
+                "price":"400",
+                "cost":"350"
+            }
+        ]
+    },
+    {
+        "name": "Dasktop",
+        "products": [
+            {
+                "name": "INTEL CORE I3 PROCESSOR 4GB RAM 500GB HDD",
+                "price":"50",
+                "cost":"20"
+            },
+            {
+                "name": "Full Set PC Core-i3-2nd Genaration-4GB DDR3 Ram-500GB HDD",
+                "price":"60",
+                "cost":"20"
+            },
+            {
+                "name": "Intel Core i7 RAM 8GB SSD 120GB Graphics 2GB Gaming PC 64",
+                "price":"50",
+                "cost":"30"
+            },
+            {
+                "name": "Intel Dual Core RAM 4GB HDD 500GB Monitor 17 inch Intel HD Graphics Built-in",
+                "price":"40",
+                "cost":"15"
+            }
+        ]
+    },
+    {
+        "name": "Food",
+        "products": [
+            {
+                "name": "Berrak Pasta",
+                "price":"50",
+                "cost":"30"
+            },
+            {
+                "name": "Barger",
+                "price":"60",
+                "cost":"40"
+            },
+            {
+                "name": "Salad",
+                "price":"50",
+                "cost":"30"
+            },
+            {
+                "name": "vegetable role",
+                "price":"40",
+                "cost":"25"
+            }
+        ]
+    },
+    {
+        "name": "Fruits",
+        "products": [
+            {
+                "name": "Pineapple",
+                "price":"80",
+                "cost":"50"
+            },
+            {
+                "name": "Pomegranate",
+                "price":"100",
+                "cost":"80"
+            },
+            {
+                "name": "Watermelon",
+                "price":"90",
+                "cost":"65"
+            },
+            {
+                "name": "Apple",
+                "price":"70",
+                "cost":"50"
+            }
+        ]
+    },
+    {
+        "name": "T-Shirt",
+        "products": [
+            {
+                "name": "T Shirt Men Fitness",
+                "price":"100",
+                "cost":"65"
+            },
+            {
+                "name": "T Shirt For Man",
+                "price":"120",
+                "cost":"95"
+            },
+            {
+                "name": "T shirt -Febric",
+                "price":"90",
+                "cost":"65"
+            },
+            {
+                "name": "T-shirt Fabric soft and comfortable",
+                "price":"130",
+                "cost":"105"
+            }
+        ]
+    },
+    {
+        "name": "Pant",
+        "products": [
+            {
+                "name": "New Stylish Denim Jeans Pant For Men -Jeans Pant",
+                "price":"200",
+                "cost":"165"
+            },
+            {
+                "name": "Smart & Stylish Denim Jeans Pant For Men",
+                "price":"230",
+                "cost":"270"
+            },
+            {
+                "name": "New Stylish Fashionable EXPORT Quality denim JEANS FOR MEN",
+                "price":"210",
+                "cost":"165"
+            },
+            {
+                "name": "Easy To care and Longive",
+                "price":"180",
+                "cost":"150"
+            }
+        ]
+    },
+    {
+        "name": "Paracetamol"
+    },
+    {
+        "name": "Productos Caballero",
+        "products": [
+            {
+                "name": "Productos Caballero",
+                "price":"300",
+                "cost":"265"
+            }
+        ]
+    },
+    {
+        "name": "Toy",
+        "products": [
+            {
+                "name": "Flip Toy Plush Doll Reversible Flip",
+                "price":"110",
+                "cost":"65"
+            },
+            {
+                "name": "Panda Animal Series Plush Toys for Children Gift - Toy",
+                "price":"90",
+                "cost":"65"
+            },
+            {
+                "name": "Talking Tom (Keypad) - Cactus Toy",
+                "price":"80",
+                "cost":"65"
+            },
+            {
+                "name": "Vocoal Dancing Talking Cactus",
+                "price":"100",
+                "cost":"65"
+            }
+        ]
+    }
+]

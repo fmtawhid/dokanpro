@@ -1,0 +1,160 @@
+[mode="dark"] {
+    --body-color: #252c32a6 !important;
+    --theme-secondary-color: #464a4c !important;
+    --dark-theme-color: #252c32 !important;
+    --dark-theme-secondary-color: #9395a2 !important;
+}
+[mode="dark"] .dropdownMenuCollapse .subMenu {
+    background: var(--theme-secondary-color);
+    color: var(--dark-theme-secondary-color);
+}
+[mode="dark"] .report-section-card {
+    background: var(--dark-theme-color) !important;
+}
+[mode="dark"] .report-section-card-text {
+    color: var(--dark-theme-secondary-color) !important;
+}
+[mode="dark"] .report-section-card-price {
+    color: var(--dark-theme-secondary-color);
+}
+[mode="dark"] .report-section-card-image img {
+    filter: invert(0.5) !important;
+}
+[mode="dark"] .graph-card-recurring {
+    background: var(--dark-theme-color);
+    color: var(--dark-theme-secondary-color);
+}
+[mode="dark"] .daterange-picker {
+    border: 1px solid var(--dark-theme-color) !important;
+    background: var(--dark-theme-color) !important;
+    color: var(--dark-theme-secondary-color);
+}
+[mode="dark"] .daterangepicker .calendar-table {
+    border: 1px solid var(--dark-theme-color) !important;
+    color: var(--dark-theme-secondary-color) !important;
+    border-radius: 4px;
+    background-color: var(--dark-theme-color) !important;
+}
+[mode="dark"] .daterangepicker td.in-range {
+    background-color: var(--dark-theme-secondary-color) !important;
+    color: var(--dark-theme-color) !important;
+}
+[mode="dark"] .daterangepicker td.off,
+.daterangepicker td.off.in-range,
+.daterangepicker td.off.start-date,
+.daterangepicker td.off.end-date {
+    background-color: var(--dark-theme-secondary-color) !important;
+    color: var(--dark-theme-color) !important;
+}
+[mode="dark"] .daterangepicker {
+    position: absolute;
+    color: var(--dark-theme-color) !important;
+    background-color: var(--dark-theme-secondary-color) !important;
+    border: 1px solid var(--dark-theme-secondary-color) !important;
+}
+[mode="dark"] .graph-card {
+    background: var(--dark-theme-color) !important;
+}
+[mode="dark"] .best-sale-monthly-card {
+    background: var(--dark-theme-color) !important;
+}
+[mode="dark"] .report-month-card-text {
+    color: var(--dark-theme-color) !important;
+}
+[mode="dark"] .graph-card-text {
+    color: var(--dark-theme-secondary-color) !important;
+}
+[mode="dark"] .best-sale-monthly-text {
+    color: var(--dark-theme-secondary-color) !important;
+}
+[mode="dark"] .best-sale-monthly-table-tr {
+    background: var(--dark-theme-secondary-color) !important;
+}
+[mode="dark"] .best-sell-table th {
+    color: var(--dark-theme-color) !important;
+}
+[mode="dark"] .app-theme-dark .dropdown-menu {
+    background: var(--dark-theme-color) !important;
+    color: var(--dark-theme-secondary-color) !important;
+}
+[mode="dark"] table.dataTable {
+    background-color: transparent !important;
+}
+[mode="dark"] .app-theme-dark .card {
+    background: var(--dark-theme-color) !important;
+    color: var(--dark-theme-secondary-color) !important;
+}
+[mode="dark"] .app-theme-dark,
+.app-theme-dark tr th {
+    color: #fff !important;
+}
+[mode="dark"] div.dataTables_wrapper div.dataTables_filter input {
+    background: var(--dark-theme-secondary-color) !important;
+    color: var(--dark-theme-color) !important;
+    border: var(--dark-theme-secondary-color) !important;
+}
+[mode="dark"] div.dataTables_wrapper div.dataTables_length select {
+    background-color: var(--dark-theme-secondary-color) !important;
+    color: var(--dark-theme-color) !important;
+    border: var(--dark-theme-secondary-color) !important;
+}
+[mode="dark"] .pagination li.disabled a {
+    background-color: var(--dark-theme-secondary-color) !important;
+    color: var(--dark-theme-color) !important;
+    border: var(--dark-theme-secondary-color) !important;
+}
+[mode="dark"] .pagination li a {
+    background-color: var(--dark-theme-secondary-color);
+    color: var(--dark-theme-color);
+    border: var(--dark-theme-secondary-color);
+}
+[mode="dark"] .app-theme-dark .table-hover tbody tr:hover {
+    background-color: var(--dark-theme-secondary-color) !important;
+    color: var(--dark-theme-color) !important;
+}
+[mode="dark"] .modal-body {
+    background: var(--dark-theme-color) !important;
+    color: var(--dark-theme-secondary-color) !important;
+}
+[mode="dark"] .modal-footer {
+    background: var(--dark-theme-color) !important;
+    color: var(--dark-theme-secondary-color) !important;
+}
+[mode="dark"] .form-control {
+    background-color: var(--dark-theme-secondary-color) !important;
+    color: var(--dark-theme-color) !important;
+    border: var(--dark-theme-secondary-color) !important;
+}
+[mode="dark"] .swal2-popup {
+    background: var(--dark-theme-secondary-color) !important;
+    color: var(--dark-theme-color) !important;
+}
+[mode="dark"] .language-item {
+    border-bottom: 1px dotted var(--dark-theme-secondary-color) !important;
+    background: var(--dark-theme-color) !important;
+}
+[mode="dark"] .dark-text-color {
+    color: var(--dark-theme-secondary-color) !important;
+}
+[mode="dark"] .languageInput {
+    background:var(--dark-theme-secondary-color)  !important;
+    color:  var(--dark-theme-color)!important;
+    border: var(--dark-theme-secondary-color) !important;
+}
+[mode="dark"] .submitBtn {
+    background: var(--dark-theme-color) !important;
+    border-top: 1px solid var(--dark-theme-color) !important;
+}
+[mode="dark"] .report-month-card {
+    background: var(--dark-theme-color) !important;
+}
+[mode="dark"] .all-report-card-amount {
+    color: var(--dark-theme-secondary-color) !important;
+}
+[mode="dark"] .apexcharts-theme-dark .apexcharts-svg {
+    background: transparent !important;
+}
+[mode="dark"] .subscription-container {
+    background: var(--dark-theme-secondary-color) !important;
+    color: var(--dark-theme-color) !important;
+}

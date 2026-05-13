@@ -1,0 +1,27 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Redirect all traffic to the public folder
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
+
+# Allow access to hidden files only if explicitly allowed
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+    Satisfy all
+</FilesMatch>
+
+# Prevent access to the .env file
+<Files .env>
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Disable directory listing
+Options -Indexes
+
+# Allow .htaccess to override server settings
+<IfModule mod_dir.c>
+    DirectoryIndex index.php
+</IfModule>

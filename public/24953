@@ -1,0 +1,7 @@
+
+use App\Http\Controllers\Frontend\HomeController;
+
+
+//Frontend
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/service', [HomeController::class, 'service'])->name('service');

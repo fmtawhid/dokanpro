@@ -1,0 +1,2 @@
+customer_group,name,company_name,email,phone_number,address,city,state,postal_code,country,password
+general,Jone dev,Razinsoft,jonedev@demo.com,+017800015123,Mohommodpur,Dhaka,,1000,Bangladesh,secret
