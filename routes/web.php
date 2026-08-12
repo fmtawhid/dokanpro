@@ -46,12 +46,14 @@ use App\Http\Controllers\SuperAdmin\LandingInstallController;
 use App\Http\Controllers\SuperAdmin\PaymentGatewayController;
 use App\Http\Controllers\SuperAdmin\DashBoardController as SuperAdminDashBoardController;
 
+use App\Http\Controllers\LandingController;
 
 use App\Http\Controllers\SuperAdmin\UserRoleController;
 use App\Http\Controllers\SuperAdmin\PermissionController;
 use App\Http\Controllers\SuperAdmin\RoleController as SuperAdminRoleController;
 
 
+    Route::get('/', [LandingController::class, 'index'])->name('root');
 
 
 Route::controller(PosController::class)->group(function () {
@@ -80,7 +82,6 @@ Route::middleware(['auth', 'check_permission'])->group(function () {
         ->middleware('auth')
         ->name('signout');
 
-    Route::get('/', [DashboardController::class, 'index'])->name('root');
 
     Route::get('/dashboard', [SuperAdminDashBoardController::class, 'dashboard'])->name('dashboard');
 

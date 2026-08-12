@@ -40,13 +40,13 @@ class CheckPermission
         // Check if user exists
         if (!$user) {
             \Log::warning("CheckPermission: User not authenticated");
-            return back()->with('error', 'User not authenticated');
+            return redirect()->route('signin.index')->with('error', 'User not authenticated');
         }
         
         // Check if user has any roles assigned
         if (!$user->roles || $user->roles->isEmpty()) {
             \Log::warning("CheckPermission: User {$user->email} (ID: {$user->id}) has no roles assigned");
-            return back()->with('error', 'User role not configured. Please contact administrator.');
+            abort(403, 'User role not configured. Please contact administrator.');
         }
         
         // Get the user's first role
@@ -62,13 +62,19 @@ class CheckPermission
         \Log::debug("CheckPermission: User {$user->email} with role '{$userRole->name}' - Total permissions: " . count($allPermissions));
         \Log::debug("CheckPermission: Checking route: {$requestRoute}");
         
-        // Check if the current route is in the user's permissions
-        if (in_array($requestRoute, $allPermissions)) {
-            \Log::debug("CheckPermission: Permission GRANTED for {$user->email} on route {$requestRoute}");
+        // Normalize some route names: treat the root route as dashboard
+        $normalizedRoute = $requestRoute;
+        if ($requestRoute === 'root') {
+            $normalizedRoute = 'dashboard';
+        }
+
+        // Check if the current (normalized) route is in the user's permissions
+        if ($normalizedRoute && in_array($normalizedRoute, $allPermissions)) {
+            \Log::debug("CheckPermission: Permission GRANTED for {$user->email} on route {$requestRoute} (normalized: {$normalizedRoute})");
             return $next($request);
         }
 
         \Log::warning("CheckPermission: Permission DENIED - User {$user->email} attempted to access unauthorized route: {$requestRoute}. Available permissions: " . implode(', ', array_slice($allPermissions, 0, 5)) . "...");
-        return back()->with('error', 'Sorry, You have no permission to access this page');
+        abort(403, 'Sorry, You have no permission to access this page');
     }
 }

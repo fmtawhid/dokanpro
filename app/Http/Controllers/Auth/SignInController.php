@@ -40,9 +40,23 @@ class SignInController extends Controller
         if (isset($user->roles[0]->name) && ($user->roles[0]->name == 'store' || $user->roles[0]->name == 'customer')) {
             return to_route('sale.pos');
         }
+
+        // Super admin -> dashboard
         if (isset($user->roles[0]->name) && $user->roles[0]->name == 'super admin') {
             return to_route('dashboard');
         }
+
+        // Admins or users with dashboard permission should go to dashboard
+        if (isset($user->roles[0]->name) && $user->roles[0]->name == 'admin') {
+            return to_route('dashboard');
+        }
+
+        // If the user object supports permission checks and has dashboard permission
+        if (method_exists($user, 'hasPermissionTo') && $user->hasPermissionTo('dashboard')) {
+            return to_route('dashboard');
+        }
+
+        // Fallback: send to root only if necessary
         return to_route('root');
     }
 

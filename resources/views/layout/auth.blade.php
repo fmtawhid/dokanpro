@@ -67,14 +67,13 @@
     </div>
 
     <!-- Login-Section -->
-    <section class="login-section">
-        <div class="leftSection">
-            <img src="{{ asset('login/assets/images/loginBG.png') }}">
-            <div class="hoverContent">
-                <img src="{{ asset('login/assets/images/Credit_card.png') }}" class="credit-card" alt="">
-                <img src="{{ asset('login/assets/images/Frame.png') }}" class="frame" alt="">
-                <img src="{{ asset('login/assets/images/Cart.png') }}" class="cart" alt="">
-                <img src="{{ asset('login/assets/images/shoping.png') }}" class="shoping" alt="">
+    <section class="login-section no-bg">
+        <div class="leftSection new-left">
+            <div class="hoverContent icons">
+                <i class="fa-solid fa-shopping-cart icon icon-1" aria-hidden="true"></i>
+                <i class="fa-solid fa-credit-card icon icon-2" aria-hidden="true"></i>
+                <i class="fa-solid fa-shopping-bag icon icon-3" aria-hidden="true"></i>
+                <i class="fa-solid fa-archive icon icon-4" aria-hidden="true"></i>
                 <h2 class="over-text2">{{ __('ready') }}!</h2>
             </div>
             <h2 class="over-text1">{{ __('streamline_sales_with') }}</h2>
