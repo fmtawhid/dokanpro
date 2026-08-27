@@ -56,6 +56,10 @@ function feature($feature)
 function mainShop()
 {
     $user = auth()->user();
+    if (!$user) {
+        return null;
+    }
+
     $mainShop = $user->shopUser->first();
     return match ($mainShop) {
         null => $user->shop,

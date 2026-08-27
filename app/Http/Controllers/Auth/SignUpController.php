@@ -15,8 +15,8 @@ use App\Enums\IsHas;
 use App\Enums\PaymentStatus;
 use App\Enums\PaymentGateway;
 use App\Enums\SubscriptionApprovalStatus;
+use App\Enums\Status;
 use Illuminate\Http\Request;
-use Carbon\Carbon;
 
 class SignUpController extends Controller
 {
@@ -88,27 +88,18 @@ class SignUpController extends Controller
     private function createFreeTrialSubscription($shop)
     {
         try {
-            // Get first subscription package (ID 1)
-            $subscription = SubscriptionRepository::find(1);
+            // Use the lowest-priced active package configured by the admin.
+            $subscription = SubscriptionRepository::query()
+                ->where('status', Status::ACTIVE->value)
+                ->orderBy('price')
+                ->first();
             
             if (!$subscription) {
                 \Log::warning('Free trial subscription package not found for shop: ' . $shop->id);
                 return;
             }
 
-            // Calculate expiry date based on recurring type
-            $date = now();
-            if ($subscription->recurring_type->value == 'Onetime') {
-                $expiredAt = now();
-            } elseif ($subscription->recurring_type->value == 'Weekly') {
-                $expiredAt = Carbon::parse($date)->addDays(7);
-            } elseif ($subscription->recurring_type->value == 'Monthly') {
-                $expiredAt = Carbon::parse($date)->addMonths(1);
-            } elseif ($subscription->recurring_type->value == 'Yearly') {
-                $expiredAt = Carbon::parse($date)->addYears(1);
-            } else {
-                $expiredAt = Carbon::parse($date)->addMonths(1);
-            }
+            $expiredAt = now()->addDays(7);
 
             // Create shop subscription (free trial - already approved)
             $shopSubscription = \App\Models\ShopSubscription::create([
