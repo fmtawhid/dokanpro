@@ -24,74 +24,36 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap" rel="stylesheet">
-    <!-- Bootstrap-Min-Css-Link -->
-    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}" type="text/css">
-    <!--Bootstrap-Icon-Css-Link -->
-    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-icons.css') }}">
-    <!-- Font-Awesome--Min-Css-Link -->
-    <link rel="stylesheet" href="{{ asset('assets/css/font-awesome.min.css') }}">
-    <!-- toastr css-->
     <link rel="stylesheet" href="{{ asset('assets/css/sweetalert2.min.css') }}" type="text/css">
-    <!-- Dropzone CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
-    <link rel="stylesheet" href="{{ asset('login/assets/css/style.css') }}">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body>
-    <div class="w-100 d-flex flex-column gap-1" style="z-index: 99; position: fixed; top: 0;">
+    <div class="fixed inset-x-0 top-0 z-50 flex flex-col gap-1">
         @if ($seederRun)
-            <div class="alert alert-danger alert-dismissible fade show mb-0 w-100 text-center rounded-0 text-black"
-                role="alert" style="padding: 10px">
-                <strong><i class="fa fa-exclamation-circle" data-toggle="tooltip" data-placement="bottom"
-                        title='If you do not run this seeder, you will not be able to use the system.'></i>
-                    Seeder dose not run.</strong> Please run <code class="text-danger">php artisan migrate:fresh
-                    --seed</code> or <a href="{{ route('seeder.run.index') }}" class="btn btn-sm common-btn"> Click
-                    here</a>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"
-                    id="closeAlert"></button>
+            <div class="flex items-center justify-center gap-2 bg-red-100 px-4 py-3 text-center text-sm text-red-900" role="alert">
+                <span><strong>Seeder dose not run.</strong> Please run <code class="font-mono text-red-700">php artisan migrate:fresh --seed</code> or <a href="{{ route('seeder.run.index') }}" class="font-semibold underline">click here</a></span>
+                <button type="button" class="text-xl leading-none" onclick="this.parentElement.remove()" aria-label="Close">&times;</button>
             </div>
         @endif
         @if ($storageLink)
-            <div class="alert alert-danger alert-dismissible fade show mb-0 w-100 text-center rounded-0 text-black"
-                role="alert" style="padding: 10px">
-                <strong><i class="fa fa-exclamation-circle" data-toggle="tooltip" data-placement="bottom"
-                        title='If you can not install storage link, then image not found.'></i>
-                    Storage link dose not exist or image not found then</strong> please run <code
-                    class="text-danger">php artisan
-                    storage:link</code> or <a href="{{ route('storage.install.index') }}" class="btn btn-sm common-btn">
-                    Click here</a>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"
-                    id="closeAlert"></button>
+            <div class="flex items-center justify-center gap-2 bg-red-100 px-4 py-3 text-center text-sm text-red-900" role="alert">
+                <span><strong>Storage link dose not exist.</strong> Please run <code class="font-mono text-red-700">php artisan storage:link</code> or <a href="{{ route('storage.install.index') }}" class="font-semibold underline">click here</a></span>
+                <button type="button" class="text-xl leading-none" onclick="this.parentElement.remove()" aria-label="Close">&times;</button>
             </div>
         @endif
     </div>
 
-    <!-- Login-Section -->
-    <section class="login-section no-bg">
-        <div class="leftSection new-left">
-            <div class="hoverContent icons">
-                <i class="fa-solid fa-shopping-cart icon icon-1" aria-hidden="true"></i>
-                <i class="fa-solid fa-credit-card icon icon-2" aria-hidden="true"></i>
-                <i class="fa-solid fa-shopping-bag icon icon-3" aria-hidden="true"></i>
-                <i class="fa-solid fa-archive icon icon-4" aria-hidden="true"></i>
-                <h2 class="over-text2">{{ __('ready') }}!</h2>
-            </div>
-            <h2 class="over-text1">{{ __('streamline_sales_with') }}</h2>
-        </div>
-        <p class="bottom-text">{{ __('left_side_bottom_text') }}</p>
-        <div class="loginCard">
+    <main class="flex min-h-screen items-center justify-center bg-slate-100 px-4 py-8 sm:px-6">
+        <section class="w-full max-w-2xl rounded-2xl bg-white p-6 shadow-xl shadow-slate-200/70 sm:p-10">
             @yield('content')
-        </div>
+        </section>
+        </section>
+    </main>
 
-    </section>
-    <!--End-Login-Section -->
-    <!-- Jquery-link -->
     <script src="{{ asset('assets/scripts/jquery-3.6.3.min.js') }}"></script>
     <script src="{{ asset('assets/scripts/sweetalert2.min.js') }}"></script>
     <script src="{{ asset('assets/scripts/sweetalert_modify.js') }}"></script>
-    <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
-    <!-- Bootstrap-Min-Bundil-Link -->
-    <script src="{{ asset('assets/scripts/bootstrap.bundle.min.js') }}"></script>
     @if (session('success'))
         <script>
             Toast.fire({
@@ -108,6 +70,18 @@
             })
         </script>
     @endif
+
+    <script>
+        function showHidePassword() {
+            const password = document.getElementById('password');
+            const toggle = document.getElementById('togglePassword');
+
+            if (!password || !toggle) return;
+
+            password.type = password.type === 'password' ? 'text' : 'password';
+            toggle.textContent = password.type === 'password' ? 'Show' : 'Hide';
+        }
+    </script>
 
     @stack('scripts')
 </body>

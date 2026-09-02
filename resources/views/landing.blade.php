@@ -325,8 +325,8 @@
 
                 <!-- CTA -->
                 <div class="flex items-center gap-3">
-                    <a href="#" class="hidden sm:inline-block text-sm font-semibold text-gray-700 hover:text-indigo-600 transition">Sign In</a>
-                    <a href="#" class="btn-primary text-white text-sm font-bold px-5 py-2.5 rounded-xl tracking-wide">
+                    <a href="{{ route('signin.index') }}" class="hidden sm:inline-block text-sm font-semibold text-gray-700 hover:text-indigo-600 transition">Sign In</a>
+                    <a href="{{ route('signup.index') }}" class="btn-primary text-white text-sm font-bold px-5 py-2.5 rounded-xl tracking-wide">
                         <i class="fas fa-rocket mr-1.5"></i>Start Free
                     </a>
                 </div>
@@ -379,7 +379,7 @@
 
             <!-- CTA -->
             <div class="flex flex-col sm:flex-row gap-4 justify-center mt-10 animate-fade-up" style="animation-delay:0.4s;">
-                <a href="#" class="btn-primary text-white font-bold px-8 py-4 rounded-xl text-base shadow-xl flex items-center justify-center gap-2">
+                <a href="{{ route('signup.index') }}" class="btn-primary text-white font-bold px-8 py-4 rounded-xl text-base shadow-xl flex items-center justify-center gap-2">
                     <i class="fas fa-rocket"></i> Start 14-Day Free Trial
                 </a>
                 <a href="#" class="btn-outline text-indigo-700 font-bold px-8 py-4 rounded-xl text-base flex items-center justify-center gap-2">

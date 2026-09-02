@@ -1,81 +1,58 @@
 @extends('layout.auth')
 @section('title', __('signin'))
 @section('content')
-    <style>
-        .version-text {
-            position: absolute;
-            right: 10px;
-            font-size: 15px;
-            top: 10px;
-            font-weight: 600;
-            color: #3bb2fb;
-            padding: 0 5px;
-            background-color: #3bb2fb36;
-            margin-right: 15px;
-            border-radius: 5px;
-        }
-    </style>
-    <form action="{{ route('signin.request') }}" method="POST">
-        <span class="version-text">V: 3.1.0</span>
+    <form action="{{ route('signin.request') }}" method="POST" class="space-y-6">
+        <div class="flex items-center justify-between">
+            <span class="rounded-full bg-sky-50 px-3 py-1 text-xs font-semibold text-sky-600">V: 3.1.0</span>
+        </div>
         @csrf
         <a href="{{ Route::has('home') ? route('home') : '#' }}">
-            <div class="logo-img text-center">
-                <img src="{{ $general_settings->logo->file ?? asset('/logo/logo.png') }}" alt="">
+            <div class="text-center">
+                <img class="mx-auto h-16 w-auto object-contain" src="{{ $general_settings->logo->file ?? asset('/logo/logo.png') }}" alt="{{ $general_settings->site_title ?? 'Ready POS' }}">
             </div>
         </a>
-        <div class="page-content">
-            <h2 class="pageTitle">{{ __('welcome_to') }} <span
-                    style="color:#3BB2FB">{{ isset($general_settings->site_title) && $general_settings->site_title ? $general_settings->site_title : 'Ready POS' }}</span>
-            </h2>
-            <h1 class="signin-heading">{{ __('sign_in') }}</h1>
+        <div class="text-center">
+            <h2 class="text-lg text-slate-500">{{ __('welcome_to') }} <span class="font-semibold text-sky-500">{{ $general_settings->site_title ?? 'Ready POS' }}</span></h2>
+            <h1 class="mt-1 text-3xl font-bold text-slate-800">{{ __('sign_in') }}</h1>
         </div>
 
-        <div class="form-outline form-white mb-3">
-            <label class="mb-2">{{ __('enter_your_email') }}</label>
-            <input type="email" name="email" id="email" class="form-control mb-1" placeholder="{{ __('email') }}">
+        <div>
+            <label class="mb-2 block text-sm font-medium text-slate-700" for="email">{{ __('enter_your_email') }}</label>
+            <input type="email" name="email" id="email" class="w-full rounded-lg border border-slate-300 px-4 py-3 text-slate-800 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" placeholder="{{ __('email') }}">
             @error('email')
-                <span class="text text-danger" role="alert">
+                <span class="mt-1 block text-sm text-red-600" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
             @enderror
         </div>
 
-        <div class="form-outline form-white mb-3">
-            <label class="mb-2">{{ __('enter_your_assword') }}</label>
-            <div class="position-relative">
-                <input type="password" id="password" name="password" class="form-control mb-1"
+        <div>
+            <label class="mb-2 block text-sm font-medium text-slate-700" for="password">{{ __('enter_your_assword') }}</label>
+            <div class="relative">
+                <input type="password" id="password" name="password" class="w-full rounded-lg border border-slate-300 px-4 py-3 pr-16 text-slate-800 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100"
                     placeholder="{{ __('password') }}">
-                <span class="eye" onclick="showHidePassword()">
-                    <i class="far fa-eye fa-eye-slash" id="togglePassword"></i>
-                </span>
+                <button type="button" class="absolute inset-y-0 right-3 text-sm font-semibold text-sky-600" onclick="showHidePassword()" id="togglePassword">Show</button>
             </div>
             @error('password')
-                <span class="text text-danger" role="alert">
+                <span class="mt-1 block text-sm text-red-600" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
             @enderror
         </div>
-        <button class="btn loginButton" type="submit">{{ __('sign_in') }}</button>
-        <span class="text-center w-100 d-block pt-2">{{ __('register_yourself_as_a_shop_owner') }} <a
-                href="{{ route('signup.index') }}">{{ __('signup') }}</a></span>
+        <button class="w-full rounded-lg bg-sky-500 px-4 py-3 font-semibold text-white transition hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-sky-300" type="submit">{{ __('sign_in') }}</button>
+        <p class="text-center text-sm text-slate-500">{{ __('register_yourself_as_a_shop_owner') }} <a class="font-semibold text-sky-600 hover:underline" href="{{ route('signup.index') }}">{{ __('signup') }}</a></p>
 
         @if (config('app.env') == 'local')
-            <div class="row mt-4">
-                <div class="col-md-12">
-                    <div class=" d-flex justify-content-center gap-2 flex-wrap">
-                        <button type="submit" class="btn btn-primary" id="admin">All In One</button>
-                        <button type="submit" class="btn btn-primary" id="groceryShop">Super Shop/Grocery</button>
-                        <button type="submit" class="btn btn-primary" id="pharmacyShop">Pharmacy</button>
-                        <button type="submit" class="btn btn-primary" id="mobileShop">Electronics/Hardware or Mobile
-                            Shop</button>
-                        <button type="submit" class="btn btn-primary" id="restaurant">Restaurant</button>
-                        <button type="submit" class="btn btn-primary" id="super_admin">Super Admin or SAAS</button>
-                    </div>
+            <div class="mt-4 border-t border-slate-200 pt-4">
+                <div class="flex flex-wrap justify-center gap-2">
+                    <button type="submit" class="rounded-md bg-slate-700 px-3 py-2 text-xs font-medium text-white" id="admin">All In One</button>
+                    <button type="submit" class="rounded-md bg-slate-700 px-3 py-2 text-xs font-medium text-white" id="groceryShop">Super Shop/Grocery</button>
+                    <button type="submit" class="rounded-md bg-slate-700 px-3 py-2 text-xs font-medium text-white" id="pharmacyShop">Pharmacy</button>
+                    <button type="submit" class="rounded-md bg-slate-700 px-3 py-2 text-xs font-medium text-white" id="mobileShop">Electronics/Hardware or Mobile Shop</button>
+                    <button type="submit" class="rounded-md bg-slate-700 px-3 py-2 text-xs font-medium text-white" id="restaurant">Restaurant</button>
+                    <button type="submit" class="rounded-md bg-slate-700 px-3 py-2 text-xs font-medium text-white" id="super_admin">Super Admin or SAAS</button>
                 </div>
-                <div class="col-md-12">
-                    <div class="small text-center mt-2 text-danger">In this above button demo and local purpose
-                    </div>
-                </div>
+                <p class="mt-2 text-center text-xs text-red-600">In this above button demo and local purpose</p>
             </div>
         @endif
     </form>
@@ -108,16 +85,4 @@
         });
     </script>
 
-    <script>
-        function showHidePassword() {
-            const toggle = document.getElementById("togglePassword");
-            const password = document.getElementById("password");
-
-            // toggle the type attribute
-            const type = password.getAttribute("type") === "password" ? "text" : "password";
-            password.setAttribute("type", type);
-            // toggle the icon
-            toggle.classList.toggle("fa-eye");
-        }
-    </script>
 @endpush
